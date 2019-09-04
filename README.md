@@ -2,6 +2,23 @@
 
 Background job processing inspired by laravel.
 
+[![build status][travis-image]][travis-url]
+[![Coverage Status][codecov-img]][codecov-url]
+[![node version][node-image]][node-url]
+[![NPM version][npm-image]][npm-url]
+
+[travis-image]: https://api.travis-ci.org/bitnbytesio/que-it.svg?branch=master
+[travis-url]: https://travis-ci.org/bitnbytesio/que-it?branch=master
+
+[codecov-img]: https://codecov.io/gh/bitnbytesio/que-it/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/bitnbytesio/que-it
+
+[npm-image]: https://img.shields.io/npm/v/que-it.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/que-it
+
+[node-image]: https://img.shields.io/badge/node.js-%3E=_8.16-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+
 ## USAGE
 
 Sending contact mail example.

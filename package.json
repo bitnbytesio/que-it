@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "mocha --recursive --timeout=5000 --exit",
+    "coverage": "nyc --reporter=lcov npm run test",
     "lint": "./node_modules/.bin/eslint .",
     "lintf": "./node_modules/.bin/eslint . --fix"
   },
@@ -30,6 +31,7 @@
     "bull": "^3.10.0",
     "debug": "^4.1.1",
     "ioredis": "^4.14.0",
+    "nyc": "^14.1.1",
     "winston": "^3.2.1",
     "winston-daily-rotate-file": "^3.10.0"
   },
