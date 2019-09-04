@@ -1,0 +1,46 @@
+{
+  "name": "que-it",
+  "version": "0.1.0",
+  "description": "Background job processing inspired by laravel.",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha --recursive --timeout=5000 --exit",
+    "lint": "./node_modules/.bin/eslint .",
+    "lintf": "./node_modules/.bin/eslint . --fix"
+  },
+  "engines": {
+    "node": ">=8.16"
+  },
+  "keywords": [
+    "queue",
+    "background",
+    "job",
+    "bull",
+    "laravel"
+  ],
+  "author": {
+    "name": "Harcharan Singh",
+    "email": "bitnbytesio@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bull": "^3.10.0",
+    "debug": "^4.1.1",
+    "ioredis": "^4.14.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "mocha": "^6.2.0",
+    "uuid": "^3.3.3"
+  },
+  "queit": {
+    "jobsDir": "test/jobs"
+  }
+}
