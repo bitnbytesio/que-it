@@ -5,8 +5,7 @@ const path = require('path');
 const Redis = require('ioredis');
 const uuid = require('uuid');
 const CreateFile = require('../jobs/CreateFile');
-const worker = require('../../lib/worker');
-const { dispatch, config } = require('../../lib/index');
+const { dispatch, config, worker } = require('../../lib/index');
 
 describe('QueueJobs', () => {
   let client;
