@@ -78,4 +78,12 @@ describe('Config', () => {
       done();
     });
   });
+
+  describe('Config:addJob', () => {
+    it('should add new driver', (done) => {
+      config.addJob('custom', 'custom');
+      assert.equal(config.getJob('custom'), 'custom');
+      done();
+    });
+  });
 });

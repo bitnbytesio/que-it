@@ -1,6 +1,6 @@
 {
   "name": "que-it",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Background job processing inspired by laravel.",
   "main": "lib/index.js",
   "directories": {
