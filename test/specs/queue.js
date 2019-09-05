@@ -24,6 +24,8 @@ describe('QueueJobs', () => {
         // skip catch
       }
 
+      config.set('driver', 'bull');
+
       const queueName = `test-${uuid()}`;
 
       const job = new CreateFile({ name: 'queueTest.log', string: 'Queued' }).on(queueName);

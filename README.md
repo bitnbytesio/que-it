@@ -6,6 +6,7 @@ Background job processing inspired by laravel.
 [![Coverage Status][codecov-img]][codecov-url]
 [![node version][node-image]][node-url]
 [![NPM version][npm-image]][npm-url]
+[![David deps][david-image]][david-url]
 
 [travis-image]: https://api.travis-ci.org/bitnbytesio/que-it.svg?branch=master
 [travis-url]: https://travis-ci.org/bitnbytesio/que-it?branch=master
@@ -18,6 +19,9 @@ Background job processing inspired by laravel.
 
 [node-image]: https://img.shields.io/badge/node.js-%3E=_8.16-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
+
+[david-image]: https://david-dm.org/bitnbytesio/que-it.svg?style=flat-square&branch=master
+[david-url]: https://david-dm.org/bitnbytesio/que-it?branch=master
 
 ## USAGE
 
@@ -86,6 +90,8 @@ queues['default'].on('completed', () => {
 });
 ```
 
+Worker will create logs directory in current working directory to save job processing logs.
+
  Adding multiple queues
 
  ```javascript
@@ -105,4 +111,13 @@ const ContactMail = require('path/test/jobs');
 dispatch(new ContactMail({ to: 'user@example.com' }).now());
 ```
 
-Worker will create logs directory in current working directory to save job processing logs.
+Changing default queue drivers.
+
+```javascript
+const { config } = require('que-it');
+// every job will be processed instead of queue in case of sync drivers
+config.set('driver', 'sync');
+
+// queueable driver
+// config.set('driver', 'bull');
+```
