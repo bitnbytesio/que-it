@@ -146,7 +146,7 @@ Adding jobs from different directories
 config.addJob('PasswordReset', './modules/auth/PasswordReset.js');
 ```
 
-Que-it considers job as independent module. In case of using database, you have to writer a boot file for that.
+Que-it considers job as independent module. In case of using database, you have to write a boot file for that.
 
 Example with mongodb:
 
@@ -175,6 +175,6 @@ You need to register boot file in package.json of your project.
 }
 ```
 
-By using this boot file, you will be able to use mongoose models in you jobs.
+By using this boot file, you will be able to use mongoose models in you jobs. Make sure to require used models (populate models also) in job files otherwise mongoose will throw "MissingSchemaError: Schema hasn't been registered for model" this error.
 
 For more configuration, read <a href="https://github.com/OptimalBits/bull">Bull</a> documentation.

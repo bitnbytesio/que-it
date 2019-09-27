@@ -8,16 +8,15 @@ const processor = require('../lib/processor');
 const packageJson = require(path.resolve(process.cwd(), 'package.json'));
 
 describe('Processor', () => {
-  it('should throw job file missin gexception', (done) => {
+  it('should throw job file missin gexception', async () => {
     try {
-      processor({ id: 1, data: { name: 'MissingJob', props: { $q: 'default' } } });
+      await processor({ id: 1, data: { name: 'MissingJob', props: { $q: 'default' } } });
       throw new Error('Exception expected.');
     } catch (e) {
       const JOBS_FOLDER = path.resolve(packageJson.queit.jobsDir);
       const jobClassFile = path.resolve(JOBS_FOLDER, 'MissingJob.js');
       assert.equal(e, `Error: Job MissingJob file ${jobClassFile} not found.`);
     }
-    done();
   });
 
   it('should returns promise resolver', async () => {
