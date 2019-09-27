@@ -100,6 +100,12 @@ Worker will create logs directory in current working directory to save job proce
  config.addQueue('mailer');
  ```
 
+ Dispatching job on specific queue
+
+```javascript
+dispatch(new ContactMail({ to: 'user@example.com' }).on('mailer'));
+```
+
 Process job without queueing.
 
 ```javascript
@@ -111,13 +117,64 @@ const ContactMail = require('path/test/jobs');
 dispatch(new ContactMail({ to: 'user@example.com' }).now());
 ```
 
+## Configure
+
 Changing default queue drivers.
 
 ```javascript
 const { config } = require('que-it');
-// every job will be processed instead of queue in case of sync drivers
+// every job will be processed immediately instead of queue in case of sync drivers
 config.set('driver', 'sync');
 
 // queueable driver
 // config.set('driver', 'bull');
 ```
+
+**Note: Producer, Worker and Processor each runs as seperate process, on fly config in one does not effect another, considure using file based config.**
+
+Creating config file
+
+```javascript
+config.set('driver', 'sync');
+config.setJobsDir('./app/jobs');
+config.save();
+```
+
+Adding jobs from different directories
+
+```javascript
+config.addJob('PasswordReset', './modules/auth/PasswordReset.js');
+```
+
+Que-it considers job as independent module. In case of using database, you have to writer a boot file for that.
+
+Example with mongodb:
+
+```javascript
+// boot.js
+// configure env variables
+require('dotenv').config();
+const mongoose = require('mongoose');
+// db connection
+mongoose.connect(process.env.MONGODB, { useNewUrlParser: true }, (err) => {
+  if (err) {
+    console.error(err);
+  }
+});
+```
+
+You need to register boot file in package.json of your project.
+
+```json
+{
+  ...
+  "queit": {
+    "jobsDir": "path/test/jobs",
+    "booter": "./boot.js"
+  }
+}
+```
+
+By using this boot file, you will be able to use mongoose models in you jobs.
+
+For more configuration, read <a href="https://github.com/OptimalBits/bull">Bull</a> documentation.
