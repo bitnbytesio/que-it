@@ -48,6 +48,17 @@ const { Job } = require('que-it');
 class ContactMail extends Job {
   constructor({ to }) {
     this.to = to;
+    /*
+    bull JobOptions
+    this.$opts = {
+      attempts: number;
+
+      repeat: {
+        tz?: string,
+        endDate?: Date | string | number
+      }
+    };
+    */
   }
 
   async run() {
@@ -82,8 +93,17 @@ const { worker, config } = require('que-it');
 // add queue names used in project to worker
 config.addQueue('default');
 
+// passing options
+// config.addQueue('default', {redis: {port: 6379, host: '127.0.0.1', password: 'foobared'}});
+
 // will return the object of queues created by worker
+// Single process:
 const queues = worker.start();
+
+// You can use concurrency as well:
+// const queues = worker.start({ concurrency : 5 });
+// and name your processor
+// const queues = worker.start({ name: 'myProcessor', concurrency : 5 });
 
 queues['default'].on('completed', () => {
   // bull queue event
