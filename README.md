@@ -51,6 +51,8 @@ class ContactMail extends Job {
     /*
     bull JobOptions
     this.$opts = {
+      priority: number;
+      delay: number;
       attempts: number;
 
       repeat: {
