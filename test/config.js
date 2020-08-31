@@ -6,8 +6,8 @@ const { config } = require('../lib/index');
 describe('Config', () => {
   describe('Config:addQueue', () => {
     it('should add to map', (done) => {
-      config.addQueue('test');
-      assert.equal(config.queues.has('test'), true);
+      const qname = config.addQueue('test');
+      assert.equal(config.queues.has(qname), true);
       done();
     });
 

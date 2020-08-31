@@ -1,9 +1,8 @@
-
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 const Redis = require('ioredis');
-const uuid = require('uuid');
+const uuid = require('uuid').v4;
 const CreateFile = require('../jobs/CreateFile');
 const { dispatch, config, worker } = require('../../lib/index');
 
@@ -31,12 +30,12 @@ describe('QueueJobs', () => {
       const job = new CreateFile({ name: 'queueTest.log', string: 'Queued' }).on(queueName);
 
       dispatch(job).then(() => {
-        config.addQueue(queueName);
+        const qName = config.addQueue(queueName);
         config.setJobsDir(path.resolve(__dirname, '../jobs'));
 
         const queues = worker.start();
 
-        queues[queueName].on('completed', () => {
+        queues[qName].on('completed', () => {
           assert.equal(fs.existsSync(filePath), true, 'File should exists.');
           // console.log(job);
           assert.equal(job.$queueable, true, 'Jos should be queueable.');
