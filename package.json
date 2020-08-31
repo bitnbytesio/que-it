@@ -1,6 +1,6 @@
 {
   "name": "que-it",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Background job processing inspired by laravel.",
   "main": "lib/index.js",
   "directories": {
@@ -14,7 +14,7 @@
     "lintf": "./node_modules/.bin/eslint . --fix"
   },
   "engines": {
-    "node": ">=8.16"
+    "node": ">=10.12"
   },
   "keywords": [
     "queue",
